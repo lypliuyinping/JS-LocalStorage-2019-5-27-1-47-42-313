@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input  id="input" >
+<p onclick="count()"> +</p>
+<script>
+    var c=document.getElementById('input');
+    if(window.name == ""){
+        console.log("首次被加载");
+        window.name = "isReload"; // 在首次进入页面时我们可以给window.name设置一个固定值
+        //写入a字段
+        localStorage["a"]=0;
+        //c.value=localStorage.getItem("a");
+    }else if(window.name == "isReload"){
+        console.log("页面被刷新");
+        localStorage.setItem("a",localStorage.getItem("a"));
+    }
+    localStorage.setItem("a",localStorage.getItem("a"));
+    c.value=localStorage.getItem("a");
+    function count() {
+        localStorage.setItem("a", parseInt(localStorage.getItem("a"))+1);
+        c.value=localStorage.getItem("a");
+    }
+</script>
+</body>
+</html>
